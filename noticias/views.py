@@ -12,3 +12,4 @@ def create_article(request):
         form = ArticleForm()
     
     return render(request, 'vista_inicial.html', {'form': form})
+
