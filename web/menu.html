@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Noticias</title>
+    <link rel="stylesheet" href="{% static 'menu.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Noticias del Día</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Categorías</a>
+                    <ul>
+                        <li><a href="#">Política</a></li>
+                        <li><a href="#">Deportes</a></li>
+                        <li><a href="#">Tecnología</a></li>
+                        <li><a href="#">Salud</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Autores</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+        <button class="login-btn">Login</button>
+    </header>
+
+    <main>
+        <article>
+            <h2>Título de la Noticia</h2>
+            <p>Este es un breve resumen de la noticia. Aquí se describen los detalles más relevantes.</p>
+        </article>
+        <article>
+            <h2>Título de otra Noticia</h2>
+            <p>Resumen de otra noticia interesante que merece la pena leer.</p>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Noticias del Día. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
