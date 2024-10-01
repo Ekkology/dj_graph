@@ -13,3 +13,10 @@ def create_article(request):
     
     return render(request, 'vista_inicial.html', {'form': form})
 
+
+def menu(request):
+    return render(request,'menu.html')
+
+
+def login(request):
+    return render(request,'login.html')
