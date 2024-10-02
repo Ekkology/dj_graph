@@ -1,25 +1,88 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo del header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+/* Navegación */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Usar flexbox para alinear elementos en línea */
+    justify-content: space-between; /* Espaciado entre elementos */
+}
+
+nav ul li {
+    position: relative; /* Para posicionar submenús */
+    margin-right: 20px; /* Espacio entre los elementos de la lista */
+}
+
 /* Estilos para los enlaces de la navegación */
 nav ul li a {
     color: white;
     text-decoration: none;
-    padding: 15px 20px; /* Aumentar el padding para más tamaño */
-    font-size: 16px; /* Aumentar el tamaño de la fuente */
-    border-radius: 5px; /* Bordes redondeados opcionales */
-    transition: background-color 0.3s; /* Transición suave para hover */
+    padding: 10px 15px; /* Espacio interno */
+    border-radius: 5px; /* Bordes redondeados */
 }
 
-/* Estilos para el botón de Login */
-.login-btn {
-    background-color: #4CAF50;
-    color: white;
+nav ul li a:hover {
+    background-color: #555; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilo para los botones de búsqueda */
+.search-btn {
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: #4CAF50; /* Color de fondo */
+    color: white; /* Color de texto */
     border: none;
-    padding: 15px 25px; /* Aumentar el padding para más tamaño */
-    font-size: 16px; /* Aumentar el tamaño de la fuente */
-    border-radius: 5px; /* Bordes redondeados opcionales */
+    border-radius: 5px;
     cursor: pointer;
-    float: right; /* Alinear a la derecha */
 }
 
-.login-btn:hover {
-    background-color: #45a049; /* Cambiar color al pasar el mouse */
+.search-btn:hover {
+    background-color: #45a049; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilos para los formularios ocultos */
+.search-form {
+    display: flex; /* Usar flexbox para alinear elementos en línea */
+    align-items: center; /* Centrar verticalmente */
+    margin-top: 10px; /* Espacio superior */
+}
+
+.submit-btn {
+    padding: 10px 15px; /* Espacio interno para el botón de envío */
+    background-color: #4CAF50; /* Color de fondo */
+    color: white; /* Color de texto */
+    border: none;
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer;
+    margin-left: 5px; /* Espacio entre el input y el botón */
+}
+
+.submit-btn:hover {
+    background-color: #45a049; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilos del main */
+main {
+    padding: 20px;
+}
+
+/* Estilos del footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
 }

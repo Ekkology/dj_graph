@@ -23,7 +23,8 @@
         <nav>
             <ul>
                 <li><a href="#">Inicio</a></li>
-                <li><a href="#">Categorías</a>
+                <li>
+                    <a href="#">Categorías</a>
                     <ul>
                         <li><a href="#">Política</a></li>
                         <li><a href="#">Deportes</a></li>
@@ -32,20 +33,20 @@
                     </ul>
                 </li>
                 <li>
-                    <button onclick="toggleVisibility('authorSearch')">Buscar Autores</button>
+                    <button onclick="toggleVisibility('authorSearch')" class="search-btn">Buscar Autores</button>
                     <div id="authorSearch" style="display: none;">
                         <form action="#" method="get" class="search-form">
                             <input type="text" placeholder="Buscar autores..." name="author" aria-label="Buscar autores">
-                            <button type="submit">Buscar</button>
+                            <button type="submit" class="submit-btn">Buscar</button>
                         </form>
                     </div>
                 </li>
                 <li>
-                    <button onclick="toggleVisibility('dateSearch')">Buscar por Fecha</button>
+                    <button onclick="toggleVisibility('dateSearch')" class="search-btn">Buscar por Fecha</button>
                     <div id="dateSearch" style="display: none;">
                         <form action="#" method="get" class="date-form">
                             <input type="date" name="date" aria-label="Buscar por fecha">
-                            <button type="submit">Buscar</button>
+                            <button type="submit" class="submit-btn">Buscar</button>
                         </form>
                     </div>
                 </li>
