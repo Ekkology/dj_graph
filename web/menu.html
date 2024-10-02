@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Noticias</title>
     <link rel="stylesheet" href="{% static 'menu.css' %}">
+    <script>
+        function toggleVisibility(id) {
+            const element = document.getElementById(id);
+            if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -21,7 +31,24 @@
                         <li><a href="#">Salud</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Autores</a></li>
+                <li>
+                    <button onclick="toggleVisibility('authorSearch')">Buscar Autores</button>
+                    <div id="authorSearch" style="display: none;">
+                        <form action="#" method="get" class="search-form">
+                            <input type="text" placeholder="Buscar autores..." name="author" aria-label="Buscar autores">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </li>
+                <li>
+                    <button onclick="toggleVisibility('dateSearch')">Buscar por Fecha</button>
+                    <div id="dateSearch" style="display: none;">
+                        <form action="#" method="get" class="date-form">
+                            <input type="date" name="date" aria-label="Buscar por fecha">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </li>
                 <li><a href="#">Contacto</a></li>
             </ul>
         </nav>

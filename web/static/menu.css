@@ -1,73 +1,25 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-}
-
-nav ul li {
-    position: relative;
-    margin-right: 20px;
-}
-
+/* Estilos para los enlaces de la navegación */
 nav ul li a {
-    color: #fff;
+    color: white;
     text-decoration: none;
+    padding: 15px 20px; /* Aumentar el padding para más tamaño */
+    font-size: 16px; /* Aumentar el tamaño de la fuente */
+    border-radius: 5px; /* Bordes redondeados opcionales */
+    transition: background-color 0.3s; /* Transición suave para hover */
 }
 
-nav ul li ul {
-    display: none;
-    position: absolute;
-    background: #444;
-    padding: 10px;
-    list-style: none;
-}
-
-nav ul li:hover ul {
-    display: block;
-}
-
+/* Estilos para el botón de Login */
 .login-btn {
-    background: #f39c12;
+    background-color: #4CAF50;
+    color: white;
     border: none;
-    color: white;
-    padding: 10px 15px;
+    padding: 15px 25px; /* Aumentar el padding para más tamaño */
+    font-size: 16px; /* Aumentar el tamaño de la fuente */
+    border-radius: 5px; /* Bordes redondeados opcionales */
     cursor: pointer;
+    float: right; /* Alinear a la derecha */
 }
 
-main {
-    padding: 20px;
-}
-
-article {
-    background: #fff;
-    margin: 20px 0;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background: #333;
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+.login-btn:hover {
+    background-color: #45a049; /* Cambiar color al pasar el mouse */
 }
