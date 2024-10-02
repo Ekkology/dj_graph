@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'login.css' %}" />
+    <title>Login y Registro</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Login Form -->
+      <div class="form-container login-container">
+        <form action="" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="form_type" value="login" />
+          <!-- Identificador del formulario -->
+          <h1>Iniciar Sesión</h1>
+          {% if form_login.errors %}
+          <div class="error">
+            <ul>
+              {% for field in form_login %} {% for error in field.errors %}
+              <li>{{ error }}</li>
+              {% endfor %} {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          <input
+            type="text"
+            name="username"
+            placeholder="Nombre de Usuario"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            required
+          />
+          <button type="submit">Ingresar</button>
+          <span>¿No tienes una cuenta? <a href="#register">Regístrate</a></span>
+        </form>
+      </div>
+
+      <!-- Register Form -->
+      <!-- Register Form -->
+      <div class="form-container register-container" id="register">
+        <form action="" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="form_type" value="register" />
+          <!-- Identificador del formulario -->
+          <h1>Registrarse</h1>
+          {% if form_register.errors %}
+          <div class="error">
+            <ul>
+              {% for field in form_register %} {% for error in field.errors %}
+              <li>{{ error }}</li>
+              {% endfor %} {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          <input
+            type="text"
+            name="username"
+            placeholder="Nombre de Usuario"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Correo Electrónico"
+            required
+          />
+          <input
+            type="password"
+            name="password1"
+            placeholder="Contraseña"
+            required
+          />
+          <input
+            type="password"
+            name="password2"
+            placeholder="Confirmar Contraseña"
+            required
+          />
+          <button type="submit">Registrarse</button>
+          <span>¿Ya tienes una cuenta? <a href="#login">Inicia Sesión</a></span>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
