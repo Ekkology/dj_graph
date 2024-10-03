@@ -38,6 +38,20 @@ nav ul li a:hover {
     background-color: #555; /* Color de fondo al pasar el mouse */
 }
 
+/* Estilos para el menú de categorías */
+nav ul li ul {
+    display: none; /* Ocultar por defecto */
+    position: absolute; /* Posicionar de forma absoluta */
+    background-color: #333; /* Color de fondo del menú */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    z-index: 1000; /* Asegurar que esté encima de otros elementos */
+}
+
+nav ul li:hover ul {
+    display: block; /* Mostrar el menú al pasar el ratón */
+}
+
 /* Estilo para los botones de búsqueda */
 .search-btn {
     margin: 5px;
