@@ -57,14 +57,19 @@
     </header>
 
     <main>
-        <article>
-            <h2>Título de la Noticia</h2>
-            <p>Este es un breve resumen de la noticia. Aquí se describen los detalles más relevantes.</p>
-        </article>
-        <article>
-            <h2>Título de otra Noticia</h2>
-            <p>Resumen de otra noticia interesante que merece la pena leer.</p>
-        </article>
+        {% if articles %}
+            {% for article in articles %}
+                <article>
+                    <h2>{{ article.title }}</h2>
+                    <p>{{ article.content }}</p>
+                    <p><strong>Categoría:</strong> {{ article.category }}</p>
+                    <p><strong>Autor:</strong> {{ article.author }}</p>
+                    <p><strong>Fecha de Publicación:</strong> {{ article.publishedDate }}</p>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p>No hay artículos disponibles en este momento.</p>
+        {% endif %}
     </main>
 
     <footer>
