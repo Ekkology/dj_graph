@@ -12,7 +12,9 @@ def create_article(request):
         form = ArticleForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('article_list')  # Redirige a una vista que liste los artículos
+            return redirect('menu')  # Redirige a una vista que liste los artículos
+        else:
+            print(form.errors)  # Muestra los errores de validación en la consola
     else:
         form = ArticleForm()
     
@@ -31,17 +33,44 @@ from django.shortcuts import render
 
 @csrf_exempt
 @login_required
-
-
 def menu(request):
-    # URL de tu endpoint GraphQL
     graphql_url = 'http://localhost:8000/graphql/'
+    
+  # Obtener los parámetros de la solicitud
+    category = request.GET.get('category')
+    author = request.GET.get('author')
+    date = request.GET.get('date')
 
-    # Obtener los parámetros de búsqueda
-    author = request.GET.get('author', '').strip()
-    date = request.GET.get('date', '').strip()
+    # Crear la consulta básica para obtener artículos
+    query = """
+    query {
+        allArticles {
+            id
+            title
+            content
+            category
+            author
+            publishedDate
+        }
+    }
+    """
 
-    # Construir la consulta GraphQL con parámetros opcionales
+    # Modificar la consulta si se proporciona una categoría
+    if category:
+        query = f"""
+        query {{
+            allArticles(category: "{category}") {{
+                id
+                title
+                content
+                category
+                author
+                publishedDate
+            }}
+        }}
+        """
+
+    # Modificar la consulta si se proporciona un autor
     if author:
         query = f"""
         query {{
@@ -55,7 +84,9 @@ def menu(request):
             }}
         }}
         """
-    elif date:
+
+    # Modificar la consulta si se proporciona una fecha
+    if date:
         query = f"""
         query {{
             allArticles(date: "{date}") {{
@@ -68,42 +99,24 @@ def menu(request):
             }}
         }}
         """
-    else:
-        # Consulta para obtener todos los artículos si no hay parámetros
-        query = """
-        query {
-            allArticles {
-                id
-                title
-                content
-                category
-                author
-                publishedDate
-            }
-        }
-        """
 
-    # Hacer la petición POST al servidor GraphQL
+    # Realiza la petición POST al servidor GraphQL
     response = requests.post(graphql_url, json={'query': query})
 
     # Verificar el contenido de la respuesta del servidor
-    print("Contenido de la respuesta:", response.text)  # Esto te ayudará a depurar si el servidor está devolviendo la información
+    print("Contenido de la respuesta:", response.text)
 
     try:
-        # Parsear los datos de la respuesta
         articles = response.json().get('data', {}).get('allArticles', [])
-        print("Artículos obtenidos:", articles)  # Verifica que los artículos se están obteniendo correctamente
+        print("Artículos obtenidos:", articles)
     except json.JSONDecodeError:
-        # Si ocurre un error de JSON, muestra el contenido
         return render(request, 'menu.html', {'error': 'Error al decodificar la respuesta del servidor GraphQL', 'response': response.text})
 
-    # Verificar si hay artículos disponibles
     if not articles:
         print("No hay artículos disponibles")
 
     # Pasar los artículos al contexto de la plantilla
     return render(request, 'menu.html', {'articles': articles})
-
 
 def login(request):  # Cambia el nombre de la vista
     form_login = AuthenticationForm()

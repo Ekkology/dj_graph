@@ -1,101 +1,78 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Página de Noticias</title>
-    <link rel="stylesheet" href="{% static 'menu.css' %}">
-    <style>
-        .hidden {
-            display: none; /* Oculta el elemento */
-        }
-        
-        nav ul li ul {
-            display: none; /* Ocultar por defecto el submenú */
-            position: absolute; /* Posicionar de forma absoluta */
-            background-color: #333; /* Color de fondo del submenú */
-            padding: 10px; /* Espaciado interno */
-            border-radius: 5px; /* Bordes redondeados */
-            z-index: 1000; /* Asegurar que esté encima de otros elementos */
-        }
-
-        nav ul li:hover > ul {
-            display: block; /* Mostrar el submenú al pasar el ratón */
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script>
-        function toggleVisibility(id) {
-            const element = document.getElementById(id);
-            element.classList.toggle('hidden'); // Alternar la clase 'hidden'
-            const isVisible = !element.classList.contains('hidden');
-            const button = document.querySelector(`[onclick="toggleVisibility('${id}')"]`);
-            button.setAttribute('aria-expanded', isVisible); // Actualiza el estado
+        function toggleDropdown() {
+            const categoriesMenu = document.getElementById("categoriesMenu");
+            categoriesMenu.classList.toggle("hidden"); // Alternar la clase 'hidden'
         }
 
-        function toggleDropdown() {
-            const categoriesMenu = document.getElementById('categoriesMenu');
-            categoriesMenu.classList.toggle('hidden'); // Alternar la clase 'hidden'
+        function toggleVisibility(elementId) {
+            const element = document.getElementById(elementId);
+            element.classList.toggle("hidden"); // Alternar la clase 'hidden'
         }
     </script>
 </head>
-<body>
-    <header>
-        <h1>Noticias del Día</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li>
-                    <button onclick="toggleDropdown()" class="search-btn" aria-expanded="false">Categorías</button>
-                    <ul id="categoriesMenu" class="hidden">
-                        <li><a href="#">Política</a></li>
-                        <li><a href="#">Deportes</a></li>
-                        <li><a href="#">Tecnología</a></li>
-                        <li><a href="#">Salud</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <button onclick="toggleVisibility('authorSearch')" class="search-btn" aria-expanded="false">Buscar Autores</button>
-                    <div id="authorSearch" class="hidden">
-                        <form action="#" method="get" class="search-form">
-                            <input type="text" placeholder="Buscar autores..." name="author" aria-label="Buscar autores">
-                            <button type="submit" class="submit-btn">Buscar</button>
-                        </form>
-                    </div>
-                </li>
-                <li>
-                    <button onclick="toggleVisibility('dateSearch')" class="search-btn" aria-expanded="false">Buscar por Fecha</button>
-                    <div id="dateSearch" class="hidden">
-                        <form action="#" method="get" class="date-form">
-                            <input type="date" name="date" aria-label="Buscar por fecha">
-                            <button type="submit" class="submit-btn">Buscar</button>
-                        </form>
-                    </div>
-                </li>
-                <li>
-                    <button onclick="toggleVisibility('createNews')" class="search-btn" aria-expanded="false">Crear Noticia</button>
-                    <div id="createNews" class="hidden">
-                        <form action="#" method="post" class="create-news-form">
-                            {% csrf_token %}
-                            <input type="text" placeholder="Título" name="title" required>
-                            <textarea placeholder="Contenido" name="content" required></textarea>
-                            <input type="text" placeholder="Categoría" name="category" required>
-                            <input type="text" placeholder="Autor" name="author" required>
-                            <button type="submit" class="submit-btn">Enviar</button>
-                        </form>
-                    </div>
-                </li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-        <button class="login-btn">Login</button>
+
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto flex items-center justify-between p-4">
+            <h1 class="text-2xl font-bold text-gray-800">Noticias del Día</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="{% url 'menu' %}" class="text-gray-600 hover:text-blue-500">Inicio</a></li>
+                    <li>
+                        <button onclick="toggleDropdown()" class="text-gray-600 hover:text-blue-500 focus:outline-none">
+                            Categorías
+                        </button>
+                        <ul id="categoriesMenu" class="hidden absolute bg-white shadow-md rounded-md mt-2">
+                            <li><a href="{% url 'menu' %}?category=Politica" class="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white">Política</a></li>
+                            <li><a href="{% url 'menu' %}?category=Deportes" class="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white">Deportes</a></li>
+                            <li><a href="{% url 'menu' %}?category=Tecnología" class="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white">Tecnología</a></li>
+                            <li><a href="{% url 'menu' %}?category=Salud" class="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white">Salud</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button onclick="toggleVisibility('authorSearch')" class="text-gray-600 hover:text-blue-500 focus:outline-none">
+                            Buscar Autores
+                        </button>
+                        <div id="authorSearch" class="hidden absolute bg-white shadow-md rounded-md mt-2">
+                            <form action="#" method="get" class="p-2">
+                                <input type="text" placeholder="Buscar autores..." name="author" aria-label="Buscar autores" class="border border-gray-300 rounded-lg p-1 w-full" />
+                                <button type="submit" class="mt-2 bg-blue-500 text-white py-1 rounded-lg w-full hover:bg-blue-600">Buscar</button>
+                            </form>
+                        </div>
+                    </li>
+                    <li>
+                        <button onclick="toggleVisibility('dateSearch')" class="text-gray-600 hover:text-blue-500 focus:outline-none">
+                            Buscar por Fecha
+                        </button>
+                        <div id="dateSearch" class="hidden absolute bg-white shadow-md rounded-md mt-2">
+                            <form action="#" method="get" class="p-2">
+                                <input type="date" name="date" aria-label="Buscar por fecha" class="border border-gray-300 rounded-lg p-1 w-full" />
+                                <button type="submit" class="mt-2 bg-blue-500 text-white py-1 rounded-lg w-full hover:bg-blue-600">Buscar</button>
+                            </form>
+                        </div>
+                    </li>
+                    <li><a href="{% url 'create_article' %}" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Crear Noticia</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-500">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Login</button>
+        </div>
     </header>
 
-    <main>
+    <main class="container mx-auto p-4">
         {% if articles %}
             {% for article in articles %}
-                <article>
-                    <h2>{{ article.title }}</h2>
+                <article class="bg-white shadow-md rounded-lg p-4 mb-4">
+                    <h2 class="text-xl font-semibold">{{ article.title }}</h2>
                     <p>{{ article.content }}</p>
                     <p><strong>Categoría:</strong> {{ article.category }}</p>
                     <p><strong>Autor:</strong> {{ article.author }}</p>
@@ -107,8 +84,9 @@
         {% endif %}
     </main>
 
-    <footer>
+    <footer class="bg-white text-center p-4 shadow-md mt-4">
         <p>&copy; 2024 Noticias del Día. Todos los derechos reservados.</p>
     </footer>
 </body>
+
 </html>

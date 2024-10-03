@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
      'graphene_django',
-     'noticias'
+     'noticias',
+     'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -86,6 +87,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'dj_graph.wsgi.application'
+
+LOGIN_URL = 'http://127.0.0.1:8000/news/login/'
 
 
 # Database

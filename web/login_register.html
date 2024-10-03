@@ -1,92 +1,85 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'login.css' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Login y Registro</title>
-  </head>
-  <body>
-    <div class="container">
-      <!-- Login Form -->
-      <div class="form-container login-container">
-        <form action="" method="POST">
-          {% csrf_token %}
-          <input type="hidden" name="form_type" value="login" />
-          <!-- Identificador del formulario -->
-          <h1>Iniciar Sesión</h1>
-          {% if form_login.errors %}
-          <div class="error">
-            <ul>
-              {% for field in form_login %} {% for error in field.errors %}
-              <li>{{ error }}</li>
-              {% endfor %} {% endfor %}
-            </ul>
-          </div>
-          {% endif %}
-          <input
-            type="text"
-            name="username"
-            placeholder="Nombre de Usuario"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-            required
-          />
-          <button type="submit">Ingresar</button>
-          <span>¿No tienes una cuenta? <a href="#register">Regístrate</a></span>
-        </form>
-      </div>
+</head>
 
-      <!-- Register Form -->
-      <!-- Register Form -->
-      <div class="form-container register-container" id="register">
-        <form action="" method="POST">
-          {% csrf_token %}
-          <input type="hidden" name="form_type" value="register" />
-          <!-- Identificador del formulario -->
-          <h1>Registrarse</h1>
-          {% if form_register.errors %}
-          <div class="error">
-            <ul>
-              {% for field in form_register %} {% for error in field.errors %}
-              <li>{{ error }}</li>
-              {% endfor %} {% endfor %}
-            </ul>
-          </div>
-          {% endif %}
-          <input
-            type="text"
-            name="username"
-            placeholder="Nombre de Usuario"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Correo Electrónico"
-            required
-          />
-          <input
-            type="password"
-            name="password1"
-            placeholder="Contraseña"
-            required
-          />
-          <input
-            type="password"
-            name="password2"
-            placeholder="Confirmar Contraseña"
-            required
-          />
-          <button type="submit">Registrarse</button>
-          <span>¿Ya tienes una cuenta? <a href="#login">Inicia Sesión</a></span>
-        </form>
-      </div>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+        <!-- Login Form -->
+        <div class="form-container login-container mb-8">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="login" />
+                <h1 class="text-2xl font-semibold text-center text-gray-800 mb-6">Iniciar Sesión</h1>
+                {% if form_login.errors %}
+                <div class="error mb-4 text-red-500">
+                    <ul>
+                        {% for field in form_login %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                <input type="text" name="username" placeholder="Nombre de Usuario" required class="border border-gray-300 rounded-lg p-2 w-full mb-4 focus:outline-none focus:ring focus:ring-blue-300 transition duration-200" />
+                <input type="password" name="password" placeholder="Contraseña" required class="border border-gray-300 rounded-lg p-2 w-full mb-4 focus:outline-none focus:ring focus:ring-blue-300 transition duration-200" />
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring focus:ring-blue-300">Ingresar</button>
+                <span class="block text-center mt-4">¿No tienes una cuenta? <a href="#register" class="text-blue-500 hover:underline">Regístrate</a></span>
+            </form>
+        </div>
+
+        <!-- Register Form -->
+        <div class="form-container register-container hidden">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="register" />
+                <h1 class="text-2xl font-semibold text-center text-gray-800 mb-6">Registrarse</h1>
+                {% if form_register.errors %}
+                <div class="error mb-4 text-red-500">
+                    <ul>
+                        {% for field in form_register %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                <input type="text" name="username" placeholder="Nombre de Usuario" required class="border border-gray-300 rounded-lg p-2 w-full mb-4 focus:outline-none focus:ring focus:ring-blue-300 transition duration-200" />
+                <input type="email" name="email" placeholder="Correo Electrónico" required class="border border-gray-300 rounded-lg p-2 w-full mb-4 focus:outline-none focus:ring focus:ring-blue-300 transition duration-200" />
+                <input type="password" name="password1" placeholder="Contraseña" required class="border border-gray-300 rounded-lg p-2 w-full mb-4 focus:outline-none focus:ring focus:ring-blue-300 transition duration-200" />
+                <input type="password" name="password2" placeholder="Confirmar Contraseña" required class="border border-gray-300 rounded-lg p-2 w-full mb-4 focus:outline-none focus:ring focus:ring-blue-300 transition duration-200" />
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring focus:ring-blue-300">Registrarse</button>
+                <span class="block text-center mt-4">¿Ya tienes una cuenta? <a href="#login" class="text-blue-500 hover:underline">Inicia Sesión</a></span>
+            </form>
+        </div>
     </div>
-  </body>
+
+    <script>
+        const loginContainer = document.querySelector('.login-container');
+        const registerContainer = document.querySelector('.register-container');
+        const registerLink = document.querySelector('a[href="#register"]');
+        const loginLink = document.querySelector('a[href="#login"]');
+
+        registerLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            loginContainer.classList.add('hidden');
+            registerContainer.classList.remove('hidden');
+        });
+
+        loginLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            registerContainer.classList.add('hidden');
+            loginContainer.classList.remove('hidden');
+        });
+    </script>
+</body>
+
 </html>
